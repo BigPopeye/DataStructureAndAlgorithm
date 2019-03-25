@@ -1,4 +1,6 @@
-public class StringTry {
+package com.olview.dayone.lineartable.array;
+
+public class StringTry { //判断一个字符串是不是回文
     public static void main(String[] args) {
         String str1 = "AbA";
         String str2 = "abDdbA";

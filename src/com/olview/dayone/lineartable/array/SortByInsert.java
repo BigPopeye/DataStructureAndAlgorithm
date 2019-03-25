@@ -1,3 +1,5 @@
+package com.olview.dayone.lineartable.array;
+
 import java.util.Arrays;
 
 public class SortByInsert {
@@ -27,7 +29,7 @@ public class SortByInsert {
 //    }
 
     public int[] sortByInsert(int[] array) {
-        int selectValue = 0;
+        int selectValue ;
         for (int i = 1; i <= array.length - 1; i++) {
             selectValue = array[i];
             for (int j = i - 1; j >= 0; j--) {

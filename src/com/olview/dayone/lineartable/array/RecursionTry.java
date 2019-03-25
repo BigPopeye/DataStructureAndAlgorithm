@@ -1,6 +1,8 @@
-public class RecursionTry {
+package com.olview.dayone.lineartable.array;
+
+public class RecursionTry { //使用递归与非递归方式求数组的和
     public static void main(String[] args) {
-        int testRecursion =Integer.valueOf(10);
+        int testRecursion = 10;
         int sum = new RecursionTry().sumByWhileLoop(testRecursion);
         System.out.println(sum);
     }
@@ -30,7 +32,7 @@ public class RecursionTry {
         return sum;
     }
 
-    public int sumByForLoopSpecial2(int n){
+   /* public int sumByForLoopSpecial2(int n){
         int sum = 0;
         int i = 1;
         for(;;){
@@ -41,7 +43,7 @@ public class RecursionTry {
             }
         }
         return sum;
-    }
+    }*/
 
     public int sumByWhileLoop(int n){
         int sum = 0;

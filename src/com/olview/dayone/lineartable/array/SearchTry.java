@@ -1,6 +1,6 @@
-import java.util.Arrays;
+package com.olview.dayone.lineartable.array;
 
-public class SearchTry {
+public class SearchTry {// 二分查找：分别使用递归和非递归方式
     public static void main(String[] args) {
         int testNum = 16;
         int[] testArray = new int[]{5, 9, 12, 13, 16, 22};
@@ -9,36 +9,6 @@ public class SearchTry {
     }
 
     public int searchNumTry(int[] array, int num) {
-//        int midIndex = 0;
-//        int leftIndex = 0;
-//        int rightIndex = 0;
-//        if(array.length%2 == 0){
-//            midIndex = array.length/2;
-//            leftIndex = midIndex-1;
-//            rightIndex = midIndex +1;
-//        }else {
-//            midIndex = (array.length-1)/2;
-//            leftIndex = midIndex - 1;
-//            rightIndex = midIndex + 1;
-//        }
-//
-//        if(array.length == 1){
-//            return midIndex; // 不考虑num没有出现的情况
-//        }else if(array.length == 2){
-//            if(array[midIndex] == num){
-//                return midIndex;
-//            }else {
-//                return array.length-midIndex;
-//            }
-//        }else {
-//            if(array[midIndex] == num){
-//                return midIndex;
-//            }else if(array[midIndex]>num){
-//                return searchNumTry(Arrays.copyOfRange(array,0,leftIndex),num);
-//            }else {
-//                return searchNumTry(Arrays.copyOfRange(array,rightIndex,array.length-1),num);
-//            }
-//        }
         return searchNumTry(array, num, 0, array.length - 1);
     }
 

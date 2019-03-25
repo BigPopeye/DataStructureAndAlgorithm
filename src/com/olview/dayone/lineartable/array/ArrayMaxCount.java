@@ -1,4 +1,6 @@
-public class ArrayMaxCount {
+package com.olview.dayone.lineartable.array;
+
+public class ArrayMaxCount { //找出数组中断最大值
     public static void main(String[] args) {
         int[] testFindMaxCount = new int[]{3, 3, 4, 4, 2, 2, 2, 2, 6, 6, 6, 7,7, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
         int maxCounNum = new ArrayMaxCount().findMaxCount(testFindMaxCount);
@@ -19,7 +21,6 @@ public class ArrayMaxCount {
                 if (currCount > maxCount) {
                     maxCount = currCount;
                     maxIndex = i;
-                }else{
                 }
                 currCount = 1;
             }
