@@ -34,11 +34,6 @@ public class BinarySearchTree {
             left = null;
             right = null;
         }
-        BST(){
-            value = 0;
-            left = null;
-            right = null;
-        }
     }
 
     public BST Find(int var,BST bstTree){
@@ -71,15 +66,12 @@ public class BinarySearchTree {
         while (bstTree.right != null){
             bstTree = bstTree.right;
         }
-
         return bstTree;
     }
 
     public BST Insert(int var,BST bstTree){
         if(bstTree == null){
-            bstTree = new BST();
-            bstTree.value = var;
-            bstTree.left = bstTree.right = null;
+            bstTree = new BST(var);//初始化一个树
             return bstTree;
         }else {
             if (var < bstTree.value){
