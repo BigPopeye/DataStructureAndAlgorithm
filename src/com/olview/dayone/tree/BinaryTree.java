@@ -49,7 +49,6 @@ public class BinaryTree{
         }
     }
 
-
 /*
 * 采用递归的方式遍历树*/
     public void PreOrderTraversal(BinTree BT){
@@ -76,7 +75,7 @@ public class BinaryTree{
     }
 /*采用栈的方式遍历树*/
     public void PreOrderTraversalS(BinTree BT){
-        Stack<BinTree> stack = new Stack<>();
+        Stack<BinTree> stack = new Stack<>();  //stack的实例化需要指明类型
         while (BT !=null || !stack.isEmpty()) {
             while (BT != null) {
                 System.out.println(BT.value);

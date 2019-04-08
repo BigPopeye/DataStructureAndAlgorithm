@@ -1,5 +1,6 @@
 package com.olview.dayone.tree;
 import java.util.Scanner;
+import java.util.*;
 
 public class BinarySearchTree {
     public static void main(String[] args) {
@@ -10,8 +11,11 @@ public class BinarySearchTree {
         bstTest.Insert(9,bstTree);
         bstTest.Insert(12,bstTree);
         bstTest.Insert(2,bstTree);
-        System.out.println("\nBST Tree is");
+        bstTest.Insert(3,bstTree);
+        System.out.println("\nBST Tree is:(InOrder)");
         bstTest.InOrderTraversal(bstTree);
+        System.out.println("\nBST Tree is:(PostOrder)");
+        bstTest.PostOrderTraversalS(bstTree);
         System.out.println("\nThe Minimal value of BST Tree is:");
         System.out.println(bstTest.FindMin(bstTree).value);
         System.out.println("\nThe Maximal value of BST Tree is:");
@@ -111,6 +115,33 @@ public class BinarySearchTree {
             InOrderTraversal(bstTree.left);
             System.out.println(bstTree.value);
             InOrderTraversal(bstTree.right);
+        }
+    }
+
+    public void PostOrderTraversalS(BST bstTree){ //通过2个栈来实现
+        if(bstTree == null){
+            return;
+        }
+        Stack<BST> stack1 = new Stack<>();
+        Stack<BST> stack2 = new Stack<>();
+        stack1.push(bstTree);
+        while (!stack1.isEmpty()){ //通过栈2作为中转，倒置将要打印出来的元素
+            bstTree = stack1.peek();
+            if(bstTree !=null){
+                stack2.push(bstTree); //当栈1的顶元素不为空，则push到栈2
+                stack1.pop(); //栈1弹出顶
+                if (bstTree.left !=null){ //栈2从顶端判断是否有左儿子or右儿子，如有且不为空，则压入栈1
+                    stack1.push(bstTree.left);
+                }
+                if(bstTree.right != null){
+                    stack1.push(bstTree.right);
+                }
+            }
+        }
+        while (!stack2.isEmpty()){
+            bstTree = stack2.peek();
+            System.out.println(bstTree.value);
+            stack2.pop();
         }
     }
 }
