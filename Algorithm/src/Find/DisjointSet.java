@@ -10,4 +10,6 @@ public interface DisjointSet {
 
     /** Check if two items is connected */
     public boolean isConnected(int x, int y);
+
+
 }

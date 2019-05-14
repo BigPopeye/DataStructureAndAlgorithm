@@ -2,12 +2,12 @@ package Find;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
-import java.util.concurrent.TimeUnit;
 
-public class WQuickUnionDS implements DisjointSet {
-
+/** improve the Weighted Quick Union algorithm with path compression*/
+public class WPCQuickUnionDS implements DisjointSet{
     public static void main(String[] args) {
-        DisjointSet ds = new WQuickUnionDS(10);
+
+        DisjointSet ds = new WPCQuickUnionDS(10);
         int count = Integer.parseInt(args[0]);
         ds.connect(1,2);
         ds.connect(3,5);
@@ -42,42 +42,60 @@ public class WQuickUnionDS implements DisjointSet {
     private int[] idps;
 
     // Θ(Ν)
-    public WQuickUnionDS(int n){
+    public WPCQuickUnionDS(int n){
         idps = new int[n];
-        for(int i = 0;i < n; i++){
+        for(int i = 0; i< n; i++){
             idps[i] = -1;
         }
     }
 
-    // O(logN)
+    //
     @Override
     public void connect(int x, int y) {
-        if(isConnected(x,y)){
-            return;
-        }
-        if(Math.abs(idps[find(x)]) < Math.abs(idps[find(y)])){
-            idps[find(y)] +=idps[find(x)];
-            idps[find(x)] = find(y);
-        }else{
-            idps[find(x)] += idps[find(y)];
-            idps[find(y)] = find(x);
-        }
+        // weighted connect : connect the smaller tree to the larger one
+        // and change the weight of tree y
+        int newparent = Math.abs(idps[find(x)]) < Math.abs(idps[find(y)])?find(y):find(x);
+        int oldparent = find(x) + find(y) - newparent;
 
+        idps[newparent] += idps[oldparent];
+        idps[oldparent] = newparent;
+
+//        for (int i = 0; i < idps.length; i++) {
+//            if (find(i) == newparent && i != newparent) { // do not erase the parent value;
+//                idps[i] = newparent;
+//            }
+//
+//            //change all the parent of y to directly to y
+//
+//        }
     }
 
-    // Ο(logN)
+
     @Override
     public boolean isConnected(int x, int y) {
-
-        return find(x) == find(y);
+        int newxp = find(x);
+        int newyp = find(y);
+        int tempx = x;
+        int tempy = y;
+        while(idps[tempx]>0){
+            int tempp = idps[tempx];
+            idps[tempx] = newxp;
+            tempx = tempp;
+        }
+        while (idps[tempy]>0){
+            int tempp = idps[tempy];
+            idps[tempy] = newyp;
+            tempy = tempp;
+        }
+        return newxp == newyp;
     }
 
-    //
+    //returns the parent index of node
     private int find(int x){
-        int parent = x;
-        while(idps[parent] > 0){
-            parent = idps[parent];
+        int p = x;
+        while(idps[p] > 0 ){
+            p = idps[p];
         }
-        return parent;
+        return p;
     }
 }

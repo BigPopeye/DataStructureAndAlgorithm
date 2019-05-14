@@ -4,18 +4,19 @@ package Find;
 
 public class QuickFindDS implements DisjointSet {
     public static void main(String[] args) {
-        QuickFindDS qf = new QuickFindDS(8);
-        qf.connect(1,2);
-        qf.connect(3,5);
-        System.out.println(qf.isConnected(2,3));
-        qf.connect(2,3);
-        System.out.println(qf.isConnected(2,3));
+        DisjointSet ds = new QuickFindDS(8);
+        ds.connect(1,2);
+        ds.connect(3,5);
+        System.out.println(ds.isConnected(2,3));
+        ds.connect(2,3);
+        System.out.println(ds.isConnected(2,3));
 
     }
 
 
     private int[] ids;
 
+    // Θ(N)
     public QuickFindDS(int n){
         ids = new int[n];
         for(int i = 0; i< n;i++){
@@ -23,7 +24,7 @@ public class QuickFindDS implements DisjointSet {
         }
     }
 
-
+    // Θ(Ν)
     @Override
     public void connect(int x, int y) {
         if(isConnected(x,y)){
@@ -35,7 +36,7 @@ public class QuickFindDS implements DisjointSet {
             }
         }
     }
-
+    // Θ(1)
     @Override
     public boolean isConnected(int x, int y) {
         return ids[x] == ids[y];
