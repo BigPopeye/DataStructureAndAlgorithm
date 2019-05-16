@@ -1,6 +1,6 @@
 package lineartable;
 
-public class SLList {
+public class SLList implements OList{
     /* Self-implement Single LinkedList
      * v1 : May 8, 2019
      * int linked list
@@ -29,15 +29,19 @@ public class SLList {
     private IntNode sentinel;
     private int size;
 
+    @Override
     public void addFirst(int x){
         sentinel.next = new IntNode(x,sentinel.next);
         size ++;
     }
 
+    @Override
     public int getFirst(){
+
         return sentinel.next.item;
     }
 
+    @Override
     public void addLast(int x){
         IntNode p = sentinel;
         while (p.next != null){
@@ -48,12 +52,41 @@ public class SLList {
         size ++;
     }
 
-    public int remove(int x){
-
+    @Override
+    public int getLast() {
+        IntNode p = sentinel;
+        while (p.next != null){
+            p = p.next;
+        }
+        return p.item;
     }
 
+    @Override
+    public int removeLast() {
+        IntNode p = sentinel;
+        if(size == 0){
+            return -1;
+        }
+        while (p.next.next != null){
+            p = p.next;
+        }
+        p.next = null;
+        size --;
+        return p.item;
+    }
+
+//    public int removeFirst(){
+//
+//    }
+//
+//    public int removeLast(){
+//
+//    }
+//
+    @Override
     public int size(){
         return size;
     }
+
 
 }
