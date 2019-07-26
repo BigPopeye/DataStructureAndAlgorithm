@@ -1,0 +1,63 @@
+/**
+* 排序的模版
+*/
+public class Example{
+        public static void sort(Comparable[] a){
+            /* 请见算法2.1、算法2.2、算法2.3、算法2.4、算法2.5或算法2.7*/
+        }
+        private static boolean less(Comparable v, Comparable w){
+            return v.compareTo(w) < 0;
+        }
+        private static void swap(Comparable[] a, int i, int j){
+            Comparable t = a[i];
+            a[i] = a[j];
+            a[j] = t;
+        }
+        private static void show(Comparable[] a) { // 在单行中打印数组
+            for (int i = 0; i < a.length; i++){
+                StdOut.print(a[i] + " ");
+             }
+            StdOut.println();
+        }
+        public static boolean isSorted(Comparable[] a) {
+        // 测试数组元素是否有序
+            for (int i = 1; i < a.length; i++)
+                if (less(a[i], a[i-1]))
+                return false;
+            return true;
+         }
+        public static void main(String[] args){
+        // 从标准输入读取字符串，将它们排序并输出
+            String[] a = In.readStrings();
+            sort(a);
+            assert isSorted(a);
+            show(a);
+        }
+}
+
+/**
+* 定义一个可比较的数据类型，需要实现 Comparable 里的 compareTo方法
+*/
+public class Date implements Comparable<Date>
+{
+   private final int day;
+   private final int month;
+   private final int year;
+   public Date(int d, int m, int y)
+   {  day = d; month = m; year = y; }
+   public int day()   {  return day;    }
+   public int month() {  return month;  }
+   public int year()  {  return year;    }
+   public int compareTo(Date that)
+   {
+      if (this.year  > that.year ) return +1;
+      if (this.year  < that.year ) return -1;
+      if (this.month > that.month) return +1;
+      if (this.month < that.month) return -1;
+      if (this.day   > that.day  ) return +1;
+      if (this.day   < that.day  ) return -1;
+      return 0;
+}
+   public String toString()
+   { return month + "/" + day + "/" + year; }
+}
