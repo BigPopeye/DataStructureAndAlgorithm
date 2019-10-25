@@ -39,6 +39,7 @@ public class Merge {
     private static boolean less(Comparable v, Comparable m){
         return v.compareTo(m) < 0;
     }
+
     private static void show(Comparable[] a) { // 在单行中打印数组
         for (int i = 0; i < a.length; i++){
             StdOut.print(a[i] + " ");

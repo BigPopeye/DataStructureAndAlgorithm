@@ -3,6 +3,8 @@ package SortModule;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
+import java.util.Random;
+
 public class Quick {
     public static final int M = 10;  // when sort small array, use insertion sort.
     public static void sort(Comparable[] a){
@@ -10,7 +12,7 @@ public class Quick {
         sort(a,0, a.length-1);
     }
     private static void sort(Comparable[] a, int lo, int hi){
-        if(hi <= lo + M){
+        if(hi <= lo + M){ //在小数据情况下，Insertion sort有较好表现
             Insertion.sort(a,lo,hi);
             return;
         }
@@ -27,18 +29,14 @@ public class Quick {
         int i = lo, j = hi+1;
         Comparable v = a[lo];
         while(true){
-            while(less(a[++i],v)){
-                if(i == hi) break;
-            }
-            while(less(v,a[--j])){
-                if(j == lo) break;
-            }
+            while(i < hi && less(a[++i],v));
+            while(j > lo && less(v,a[--j]));
             if(i >= j){
                 break;
             }
             swap(a,i,j);
         }
-        swap(a,lo,j);
+        swap(a,lo,j); //最后记得交换目标（lo是预设的目标）
         return j;
     }
 

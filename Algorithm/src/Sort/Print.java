@@ -7,4 +7,5 @@ public class Print {
             System.out.print(a +" ");
         }
     }
+
 }
