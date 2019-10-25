@@ -2,7 +2,7 @@ package Find;
 
 public class QuickUnionDS implements DisjointSet {
     public static void main(String[] args) {
-        QuickUnionDS qu = new QuickUnionDS(8);
+        DisjointSet qu = new QuickUnionDS(8);
         qu.connect(1,2);
         qu.connect(3,5);
         System.out.println(qu.isConnected(2,3));
@@ -14,6 +14,7 @@ public class QuickUnionDS implements DisjointSet {
     // store the parent of the item
     private int[] pid;
 
+    // Θ(Ν)
     public QuickUnionDS(int n){
         pid = new int[n];
         for(int i = 0;i < n; i++){
@@ -21,7 +22,7 @@ public class QuickUnionDS implements DisjointSet {
         }
     }
 
-
+    // Ο(Ν)
     @Override
     public void connect(int x, int y) {
         if(isConnected(x,y)){
@@ -30,6 +31,7 @@ public class QuickUnionDS implements DisjointSet {
         pid[find(y)] = find(x);
     }
 
+    // Ο(Ν)
     @Override
     public boolean isConnected(int x, int y) {
         return find(x) == find(y);
