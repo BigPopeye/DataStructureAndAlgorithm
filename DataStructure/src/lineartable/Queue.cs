@@ -38,9 +38,9 @@ public class Queue{
   }
   
   public Object Peek() {
-            if (Count == 0)
-                Consolo.WriteLine("EmptyQueue");
-            return _array[_head];
+        if (Count == 0)
+            Consolo.WriteLine("EmptyQueue");
+        return _array[_head];
   }
 
   private void SetCapacity(int capacity){
