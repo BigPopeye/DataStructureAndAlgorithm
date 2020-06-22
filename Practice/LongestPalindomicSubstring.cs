@@ -15,6 +15,7 @@ namespace Assignment6
                 return s;
             }
             int maxLen = 1;
+            // when find the maxLen of substring, relocate the startIndex of the substring to get substring of s
             int startIndex = 0;
             for(int i = 0; i < s.Length; i++){
                 int len1 = maxPalindomicLenth(s,i,i);
@@ -27,15 +28,14 @@ namespace Assignment6
             }
             return s.Substring(startIndex, maxLen);
         } 
-        // private bool isPalindomic(String s){
-
-        // }
 
         private int maxPalindomicLenth(String s, int left, int right){
             while(left >= 0 && right < s.Length && s[left] == s[right]{
                 left--;
                 right++;
             }
+            //palidomic string length =  (r - l + 1)
+            // length = (++r) - (--l) -2 + 1 = right - left -1
             return right - left -1;
         }
 

@@ -2,16 +2,21 @@ using System;
 namespace Assignment6
 {
     public class Solution{
-    // 1. using stack
-    // T : O(n)
-    // S : O(n) 
-        public static String RemoveDupChar(String s){
+    //2. remove adjacent duplicate characters from string
+        // eg : "azxxzy" => "ay"
+        // eg : "caaabbbaacdddd" => ""
+        // eg : "acaaabbbacdddd" => "acac"
+        // T : O(n)
+        // S : O(n) 
+        public static string RemoveDupChar(string s){
             Stack stack = new Stack();
-            for(int i = 0; i < s.Length; i++){
-                if(stack.Count != 0 && stack.Peek() != s[i]){
-                    Char curr = stack.Pop();
+            // for the last duplicate, since we didn't check, it will left in the stack
+            string temp = s + "!";
+            for(int i = 0; i < temp.Length; i++){
+                if(stack.Count != 0 && !stack.Peek().Equals(temp[i])){
+                    char curr = (char)stack.Pop();
                     bool hasDup = false;
-                    while(stack.Count!= 0 && curr == stack.Peek()){
+                    while(stack.Count!= 0 && curr.Equals(stack.Peek())){
                         hasDup = true;
                         stack.Pop();
                     }
@@ -20,8 +25,9 @@ namespace Assignment6
                         stack.Push(curr);
                     }
                 }
-                stack.Push(s[i]);
+                if(i != s.Length) stack.Push(temp[i]);
             }
+
             StringBuilder sb = new StringBuilder();
             while(stack.Count!=0){
                 sb.Insert(0,stack.Pop());
